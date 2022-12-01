@@ -19,13 +19,13 @@
             "name": "Dart",
             "type": "dart",
             "request": "launch",
-            "program": "bin/main.dart"
+            "program": "bin/aoc_2022.dart"
         },
         {
             "name": "aoc-2022",
             "request": "launch",
             "type": "dart",
-            "program": "bin/main.dart"
+            "program": "bin/aoc_2022.dart"
         }
     ]
 }
