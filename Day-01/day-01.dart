@@ -1,40 +1,31 @@
 import 'package:aoc_2022/helpers.dart' as helpers;
 
+//Find out how many calories the elf with the most calories has
 Future<int> part1() async {
-  var contents = await helpers.readFileLinesAsync('Day-01/part1.txt');
-  var maxSeen = 0;
-  var currentElfCalories = 0;
-
-  for (var line in contents) {
-    if (line.isNotEmpty) {
-      var snackCalories = int.parse(line);
-      currentElfCalories += snackCalories;
-    } else {
-      if (currentElfCalories > maxSeen) {
-        maxSeen = currentElfCalories;
-      }
-      currentElfCalories = 0;
-    }
-  }
-
-  return maxSeen;
-}
-
-Future<int> part2() async {
-  var contents = await helpers.readFileLinesAsync('Day-01/part1.txt');
-
-  var currentElfCalories = 0;
+  var contents = await helpers.readFileParagraphsAsync('Day-01/part1.txt');
   var calorieList = <int>[];
 
-  for (var line in contents) {
-    if (line.isNotEmpty) {
-      var snackCalories = int.parse(line);
-      currentElfCalories += snackCalories;
-    } else {
-      calorieList.add(currentElfCalories);
-      currentElfCalories = 0;
-    }
+  //Sum up all the calories for each elf into a new list
+  for (var elfSnacks in contents) {
+    calorieList.add(
+        elfSnacks.map(int.parse).reduce((value, element) => value + element));
   }
+
+  calorieList.sort(); //Sorts low to high
+  return calorieList.reversed.first;
+}
+
+//Find out how many calories the top 3 elfs with the most calories have
+Future<int> part2() async {
+  var contents = await helpers.readFileParagraphsAsync('Day-01/part1.txt');
+  var calorieList = <int>[];
+
+  //Sum up all the calories for each elf into a new list
+  for (var elfSnacks in contents) {
+    calorieList.add(
+        elfSnacks.map(int.parse).reduce((value, element) => value + element));
+  }
+
   calorieList.sort(); //Sorts low to high
   return calorieList.reversed
       .take(3)
