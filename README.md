@@ -1,2 +1,2 @@
-# AoC-2022
-Solutions to the 2022 edition of Advent of Code using Dart
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
