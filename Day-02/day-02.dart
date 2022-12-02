@@ -49,8 +49,6 @@ int calculateScore(String round) {
 
 int calculateShape(String round) {
   var score = 0;
-
-  var theirs = round.split(" ")[0];
   var mine = round.split(" ")[1];
 
   //Ties
