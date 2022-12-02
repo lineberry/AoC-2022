@@ -1,4 +1,0 @@
-this,is,a,test,of,reading,a,file
-with,multiple,lines
-here,is,another
-as,well
