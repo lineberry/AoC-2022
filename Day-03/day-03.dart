@@ -1,4 +1,5 @@
 import 'package:aoc_2022/helpers.dart' as helpers;
+import 'package:collection/collection.dart';
 
 Future<int> part1() async {
   var sacks = await helpers.readFileLinesAsync('Day-03/input.txt');
@@ -10,12 +11,11 @@ Future<int> part1() async {
 
 Future<int> part2() async {
   var sacks = await helpers.readFileLinesAsync('Day-03/input.txt');
-  var pSum = 0;
-  for (var i = 0; i < sacks.length; i += 3) {
-    pSum += calculateGroupPriority(sacks[i], sacks[i + 1], sacks[i + 2]);
-  }
 
-  return pSum;
+  return sacks
+      .slices(3)
+      .map((group) => calculateGroupPriority(group[0], group[1], group[2]))
+      .reduce((value, element) => value + element);
 }
 
 int calculatePriority(String sack) {
