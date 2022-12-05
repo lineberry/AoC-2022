@@ -29,3 +29,29 @@ Future<List<List<String>>> readFileParagraphsAsync(String path) async {
   rv.add(paragraph);
   return rv;
 }
+
+class Stack<E> {
+  final _list = <E>[];
+
+  void push(E value) => _list.add(value);
+
+  E pop() => _list.removeLast();
+
+  List<E> popNum(int num) {
+    var rv = _list.getRange(_list.length - num, _list.length).toList();
+    _list.removeRange(_list.length - num, _list.length);
+    return rv;
+  }
+
+  void pushList(List<E> list) {
+    _list.addAll(list);
+  }
+
+  E get peek => _list.last;
+
+  bool get isEmpty => _list.isEmpty;
+  bool get isNotEmpty => _list.isNotEmpty;
+
+  @override
+  String toString() => _list.toString();
+}
