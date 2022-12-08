@@ -55,3 +55,26 @@ class Stack<E> {
   @override
   String toString() => _list.toString();
 }
+
+class ElfFile {
+  String name;
+  int size;
+
+  ElfFile(this.name, this.size);
+}
+
+class ElfDirectory {
+  String name;
+  ElfDirectory? parent;
+  int totalFileSize = 0;
+  Map<String, ElfDirectory> children = <String, ElfDirectory>{};
+  Map<String, ElfFile> files = <String, ElfFile>{};
+
+  ElfDirectory(this.name, this.parent);
+}
+
+class ElfFileSystem {
+  late ElfDirectory currentDirectory;
+  late ElfDirectory root;
+  List<ElfDirectory> directories = [];
+}
