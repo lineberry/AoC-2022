@@ -1,4 +1,4 @@
-import '../Day-08/day-08.dart' as day;
+import '../Day-09/day-09.dart' as day;
 
 Future<void> main(List<String> arguments) async {
   var results = await day.part1();

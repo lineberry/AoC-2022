@@ -15,3 +15,4 @@ dev_dependencies:
 dependencies:
   characters: ^1.2.1
   collection: ^1.17.0
+  tuple: ^2.0.1
