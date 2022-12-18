@@ -84,7 +84,7 @@ Future<String> part1() async {
   var stacks = populateStacks();
 
   for (var instruction in instructions) {
-    var digits = extractDigitsFromInstruction(instruction);
+    var digits = extractDigitsFromString(instruction);
     performStackInstruction(digits[0], digits[1], digits[2], stacks);
   }
 
@@ -96,7 +96,7 @@ Future<String> part2() async {
   var stacks = populateStacks();
 
   for (var instruction in instructions) {
-    var digits = extractDigitsFromInstruction(instruction);
+    var digits = extractDigitsFromString(instruction);
     performQueueInstruction(digits[0], digits[1], digits[2], stacks);
   }
 
@@ -115,12 +115,4 @@ void performQueueInstruction(
     int num, int source, int dest, List<Stack<String>> stacks) {
   //Grab the last num from source and append to dest
   stacks[dest - 1].pushList(stacks[source - 1].popNum(num));
-}
-
-List<int> extractDigitsFromInstruction(String instruction) {
-  return RegExp(r"(\d+)")
-      .allMatches(instruction)
-      .map((m) => m[0]!)
-      .map(int.parse)
-      .toList();
 }

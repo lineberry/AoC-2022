@@ -85,3 +85,11 @@ double getDistance(Tuple2<int, int> point1, Tuple2<int, int> point2) {
   return sqrt(pow(point2.item1 - point1.item1, 2) +
       pow(point2.item2 - point1.item2, 2));
 }
+
+List<int> extractDigitsFromString(String inputString) {
+  return RegExp(r"(\d+)")
+      .allMatches(inputString)
+      .map((m) => m[0]!)
+      .map(int.parse)
+      .toList();
+}
