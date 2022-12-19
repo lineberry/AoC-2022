@@ -7,7 +7,7 @@ Future<int> part1() async {
   var monkeys = parseMonkeys(monkeyInput);
 
   //Do 20 rounds of monkey business
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 10000; i++) {
     doRoundOfMonkeyBusiness(monkeys);
   }
 
@@ -54,7 +54,7 @@ void doRoundOfMonkeyBusiness(List<Monkey> monkeys) {
     for (var item in monkey.items) {
       monkey.inspectionCounter++;
       var newValue = monkey.operation(item);
-      newValue = newValue ~/ BigInt.from(3);
+      //newValue = newValue ~/ BigInt.from(3);
       if (monkey.test(newValue)) {
         monkeys[monkey.ifTrueThrowTo].items.add(newValue);
       } else {
@@ -76,6 +76,7 @@ class Monkey {
   String operator = "+";
 
   bool test(BigInt testValue) => testValue % divisibleBy == BigInt.from(0);
+
   BigInt operation(BigInt oldValue) {
     BigInt parsedModifier = BigInt.from(1);
     if (modifier == "old") {
@@ -85,9 +86,9 @@ class Monkey {
     }
     switch (operator) {
       case "*":
-        return oldValue * parsedModifier;
+        return ((oldValue) * (parsedModifier) % BigInt.from(9699690));
       case "+":
-        return oldValue + parsedModifier;
+        return ((oldValue) + (parsedModifier) % BigInt.from(9699690));
     }
     return BigInt.from(0);
   }
