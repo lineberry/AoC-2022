@@ -25,8 +25,7 @@ List<Monkey> parseMonkeys(List<List<String>> monkeyInput) {
         monkey.id = extractDigitsFromString(monkeyLines[i])[0];
       }
       if (i == 1) {
-        monkey.items =
-            extractDigitsFromString(monkeyLines[i]).map(BigInt.from).toList();
+        monkey.items = extractDigitsFromString(monkeyLines[i]);
       }
       if (i == 2) {
         var part2 = monkeyLines[i].split(" = ")[1];
@@ -34,8 +33,7 @@ List<Monkey> parseMonkeys(List<List<String>> monkeyInput) {
         monkey.modifier = part2.split(" ")[2];
       }
       if (i == 3) {
-        monkey.divisibleBy =
-            BigInt.from(extractDigitsFromString(monkeyLines[i])[0]);
+        monkey.divisibleBy = extractDigitsFromString(monkeyLines[i])[0];
       }
       if (i == 4) {
         monkey.ifTrueThrowTo = extractDigitsFromString(monkeyLines[i])[0];
@@ -67,29 +65,29 @@ void doRoundOfMonkeyBusiness(List<Monkey> monkeys) {
 
 class Monkey {
   int id = 0;
-  List<BigInt> items = [];
-  BigInt divisibleBy = BigInt.from(1);
+  List<int> items = [];
+  int divisibleBy = 1;
   int inspectionCounter = 0;
   int ifTrueThrowTo = 0;
   int ifFalseThrowTo = 0;
   String modifier = "old";
   String operator = "+";
 
-  bool test(BigInt testValue) => testValue % divisibleBy == BigInt.from(0);
+  bool test(int testValue) => testValue % divisibleBy == 0;
 
-  BigInt operation(BigInt oldValue) {
-    BigInt parsedModifier = BigInt.from(1);
+  int operation(int oldValue) {
+    int parsedModifier = 1;
     if (modifier == "old") {
       parsedModifier = oldValue;
     } else {
-      parsedModifier = BigInt.parse(modifier);
+      parsedModifier = int.parse(modifier);
     }
     switch (operator) {
       case "*":
-        return ((oldValue) * (parsedModifier) % BigInt.from(9699690));
+        return ((oldValue) * (parsedModifier) % 9699690);
       case "+":
-        return ((oldValue) + (parsedModifier) % BigInt.from(9699690));
+        return ((oldValue) + (parsedModifier) % 9699690);
     }
-    return BigInt.from(0);
+    return 0;
   }
 }
