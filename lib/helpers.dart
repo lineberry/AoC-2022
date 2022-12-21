@@ -86,10 +86,40 @@ double getDistance(Tuple2<int, int> point1, Tuple2<int, int> point2) {
       pow(point2.item2 - point1.item2, 2));
 }
 
+int getGridDistance(Tuple2<int, int> point1, Tuple2<int, int> point2) {
+  return (point2.item1 - point1.item1).abs() +
+      (point2.item2 - point1.item2).abs();
+}
+
 List<int> extractDigitsFromString(String inputString) {
   return RegExp(r"(\d+)")
       .allMatches(inputString)
       .map((m) => m[0]!)
       .map(int.parse)
       .toList();
+}
+
+extension GridNeighbors<T> on List<List<T>> {
+  List<Tuple2<int, int>> getNeighbors(Tuple2<int, int> current) {
+    var rv = <Tuple2<int, int>>[];
+
+    //add up
+    if (current.item2 > 0) {
+      rv.add(Tuple2(current.item1, current.item2 - 1));
+    }
+    //add down
+    if (current.item2 < length - 1) {
+      rv.add(Tuple2(current.item1, current.item2 + 1));
+    }
+    //add right
+    if (length > 0 && current.item1 < this[0].length - 1) {
+      rv.add(Tuple2(current.item1 + 1, current.item2));
+    }
+    //add left
+    if (current.item1 > 0) {
+      rv.add(Tuple2(current.item1 - 1, current.item2));
+    }
+
+    return rv;
+  }
 }
