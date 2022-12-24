@@ -123,3 +123,35 @@ extension GridNeighbors<T> on List<List<T>> {
     return rv;
   }
 }
+
+extension SpaceNeighbors<T> on List<List<List<T>>> {
+  List<Tuple3<int, int, int>> getNeighbors(Tuple3<int, int, int> current) {
+    var rv = <Tuple3<int, int, int>>[];
+
+    //add Z
+    if (current.item3 > 0) {
+      rv.add(Tuple3(current.item1, current.item2, current.item3 - 1));
+    }
+    if (current.item3 < length) {
+      rv.add(Tuple3(current.item1, current.item2, current.item3 + 1));
+    }
+
+    //add y
+    if (current.item2 > 0) {
+      rv.add(Tuple3(current.item1, current.item2 - 1, current.item3));
+    }
+    if (current.item2 < this[0].length) {
+      rv.add(Tuple3(current.item1, current.item2 + 1, current.item3));
+    }
+
+    //add x
+    if (current.item1 > 0) {
+      rv.add(Tuple3(current.item1 - 1, current.item2, current.item3));
+    }
+    if (current.item1 < this[0][0].length) {
+      rv.add(Tuple3(current.item1 + 1, current.item2, current.item3));
+    }
+
+    return rv;
+  }
+}
