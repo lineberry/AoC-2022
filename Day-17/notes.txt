@@ -1,0 +1,31 @@
+Rock count is 41
+Instruction index is 25.
+Rock index is 0.
+Tower height is 67
+
+Rock count is 76
+Instruction index is 25.
+Rock index is 0.
+Tower height is 120
+
+Rock count is 4906
+Instruction index is 25.
+Rock index is 0.
+Tower height is 7434
+
+Rock count is 4941
+Instruction index is 25.
+Rock index is 0.
+Tower height is 7487
+
+Rock count is 4976
+Instruction index is 25.
+Rock index is 0.
+Tower height is 7540
+
+Tower height increases by 53 every 35 rocks
+
+ Rocks           Period     Cycles        Height   (height of 15 rocks for the remainder)       Total Height
+(1000000000000 / 35)    =   28571428571 * 53     + 25                                         = 1514285714288
+(1000000000000 / 1720)  =   581395348   * 2738   + 2286                                       = 1591860465110
+                                                   (height of 1440 rocks for the remainder)

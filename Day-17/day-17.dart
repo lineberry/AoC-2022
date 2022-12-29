@@ -8,16 +8,22 @@ Future<int> part1() async {
 
   var game = TetrisGame(instructions.split(""));
 
-  while (game.pieceCounter < 1000000000000) {
+  while (game.pieceCounter < 1440) {
     game.step();
   }
 
-  //game.printGame();
+  game.instructionRepeatMap.entries
+      .where((element) => element.value > 1)
+      .forEach((element) => print(
+          "Repeated instruction at index ${element.key} ${element.value} times"));
+
+  game.printGame();
   print("There are ${game.pieceCounter} pieces.");
   return game.getTowerHeight();
 }
 
 class TetrisGame {
+  Map<int, int> instructionRepeatMap = {0: 0};
   int pieceCounter = 0;
   List<String> instructions;
   int instructionCounter = 0;
@@ -175,6 +181,22 @@ class TetrisGame {
   void renderCompletePiece() {
     for (var y = 0; y < playArea.length; y++) {
       playArea[y] = playArea[y].replaceAll("@", "#");
+    }
+    if (activePiece == horizonPiece) {
+      var instructionIndex = instructionCounter % instructions.length;
+      if (instructionIndex == 1190) {
+        print("Rock count is ${pieceCounter + 1}");
+        print("Instruction index is $instructionIndex.");
+        print("Rock index is ${pieceCounter % pieceList.length}.");
+        print("Tower height is ${getTowerHeight()}");
+        print("");
+      }
+      if (instructionRepeatMap.containsKey(instructionIndex)) {
+        var value = instructionRepeatMap[instructionIndex]!;
+        instructionRepeatMap[instructionIndex] = value + 1;
+      } else {
+        instructionRepeatMap[instructionIndex] = 1;
+      }
     }
     activePiece = null;
     pieceCounter++;
