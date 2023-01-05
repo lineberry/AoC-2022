@@ -8,14 +8,14 @@ Future<int> part1() async {
 
   var game = TetrisGame(instructions.split(""));
 
-  while (game.pieceCounter < 1440) {
+  while (game.pieceCounter < 2022) {
     game.step();
   }
 
-  game.instructionRepeatMap.entries
-      .where((element) => element.value > 1)
-      .forEach((element) => print(
-          "Repeated instruction at index ${element.key} ${element.value} times"));
+  // game.instructionRepeatMap.entries
+  //     .where((element) => element.value > 1)
+  //     .forEach((element) => print(
+  //         "Repeated instruction at index ${element.key} ${element.value} times"));
 
   game.printGame();
   print("There are ${game.pieceCounter} pieces.");
@@ -104,7 +104,6 @@ class TetrisGame {
       if (pieceCanGoRight()) {
         pieceCoords = Tuple2(pieceCoords.item1 + 1, pieceCoords.item2);
       }
-      renderActivePiece();
     }
     renderActivePiece();
     instructionCounter++;
