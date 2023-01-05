@@ -202,9 +202,6 @@ class TetrisGame {
   }
 
   bool pieceCanGoLeft() {
-    if (pieceCoords.item1 == 0) {
-      return false;
-    }
     if (activePiece == horizonPiece) {
       if (playArea[pieceCoords.item2][pieceCoords.item1 - 1] != ".") {
         return false;
